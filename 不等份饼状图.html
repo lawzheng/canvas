@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<canvas width="600px" height="400px"></canvas>
+</body>
+<script>
+    var myCanvas = document.querySelector('canvas');
+    var ctx = myCanvas.getContext('2d');
+    var data=[5,30,10,5,34,54,123];
+    var all = 0;
+    for(i=0;i<data.length;i++){
+        all += data[i];
+    }
+
+    var w = ctx.canvas.width;
+    var h = ctx.canvas.height;
+    var start=0;
+    var end=0;
+    for(i=0;i<data.length;i++){
+
+        start = end;
+        end += Math.PI*2*data[i]/all;
+
+        var r = Math.floor(Math.random(0,1)*256);
+        var g = Math.floor(Math.random(0,1)*256);
+        var b = Math.floor(Math.random(0,1)*256);
+
+        ctx.beginPath();
+        ctx.moveTo(w/2,h/2);
+        ctx.arc(w/2,h/2,150,start,end);
+        ctx.fillStyle='rgb('+r+','+g+','+b+')';
+        ctx.fill();
+    }
+</script>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<canvas width="600px" height="400px"></canvas>
+</body>
+<script src="index.js"></script>
+<script>
+    var data = [
+        {
+            x: 100,
+            y: 120
+        },
+        {
+            x: 200,
+            y: 160
+        },
+        {
+            x: 300,
+            y: 240
+        },
+        {
+            x: 400,
+            y: 120
+        },
+        {
+            x: 500,
+            y: 80
+        }
+    ];
+    var lineChart = new LineChart();
+    lineChart.init(data);
+</script>
+</html>

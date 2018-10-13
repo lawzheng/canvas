@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<canvas width="600px" height="400px"></canvas>
+</body>
+<script>
+    var person = function (ctx) {
+        this.ctx = ctx||document.querySelector('canvas').getContext('2d');
+        this.src = 'image/03.png';
+        this.index = 0;
+        this.step = 10;
+        this.stepX = 0;
+        this.stepY = 0;
+        this.i=0;
+    };
+    person.prototype.init= function () {
+        this.LoadImage();
+    };
+
+    person.prototype.LoadImage= function () {
+        var image = new Image();
+        var that =this;
+        image.src = this.src;
+        image.onload= function () {
+            that.imageWidth = image.width;
+            that.imageHeight = image.height;
+            that.personWidth = that.imageWidth/4;
+            that.personHeight = that.imageHeight/4;
+            that.ctx.drawImage(image,
+                    0,0,
+                    that.personWidth,that.personHeight,
+                    100,100,
+                    that.personWidth,that.personHeight);
+
+            document.onkeydown = function (e) {
+                if(e.keyCode == 40){
+                    that.index=0;/*前*/
+                    that.stepY++;
+                    that.drawImage(image);
+                }else if(e.keyCode == 37){
+                    that.index=1;/*左*/
+                    that.stepX--;
+                    that.drawImage(image);
+                }else if(e.keyCode == 39){
+                    that.index=2;/*右*/
+                    that.stepX++;
+                    that.drawImage(image);
+                }else if(e.keyCode == 38){
+                    that.index=3;/*后*/
+                    that.stepY--;
+                    that.drawImage(image);
+                }
+            };
+        };
+
+
+    };
+    person.prototype.drawImage= function (image) {
+        this.i++;
+        this.ctx.clearRect(0,0,this.ctx.canvas.width,this.ctx.canvas.height);
+        this.ctx.drawImage(image,
+                this.personWidth*this.i,this.personHeight*this.index,
+                this.personWidth,this.personHeight,
+                100+this.stepX*this.step,100+this.stepY*this.step,
+                this.personWidth,this.personHeight);
+        if(this.i>=3){
+            this.i=0;
+        }
+    };
+
+    var p = new person();
+    p.init();
+
+
+
+</script>
+</html>

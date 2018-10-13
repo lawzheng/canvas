@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+            display: block;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+<canvas width="600px" height="400px"></canvas>
+</body>
+<script src="index.js"></script>
+<script>
+
+    var data = [
+        {
+            title:'15-20岁',
+            num:6
+        },
+        {
+            title:'20-25岁',
+            num:30
+        },
+        {
+            title:'25-30岁',
+            num:10
+        },
+        {
+            title:'30岁以上',
+            num:8
+        }
+    ];
+    var pie = new pie();
+    pie.init(data);
+</script>
+</html>
